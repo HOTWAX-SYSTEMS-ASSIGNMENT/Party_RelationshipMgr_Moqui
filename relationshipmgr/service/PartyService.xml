@@ -1,0 +1,22 @@
+<services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/service-definition-3.xsd">
+    <service verb="delete" noun="Party">
+        <in-parameters>
+            <parameter name="partyId"/>
+        </in-parameters>
+        <actions>
+            <entity-find-one entity-name="moqui.party.PartyEntity" value-field="partyList">
+                <field-map field-name="partyId" from="context.partyId"/>
+            </entity-find-one>
+            <if condition="partyList != null">
+                <entity-delete-related value-field="partyList" relationship-name="Person"/>
+                <entity-delete-related value-field="partyList" relationship-name="Organization"/>
+                <entity-delete-related value-field="partyList" relationship-name="PartyRole"/>
+                <entity-delete-related value-field="partyList" relationship-name="PartyContactMech"/>
+                <entity-delete value-field="partyList"/>
+                <else>
+                    <message>Party does not exists</message>
+                </else>
+            </if>
+        </actions>
+    </service>
+</services>

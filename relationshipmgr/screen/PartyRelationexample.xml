@@ -1,0 +1,287 @@
+    <screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/xml-screen-3.xsd"
+            require-authentication="anonymous-all"  default-menu-title="Applications">
+
+        <transition name="createParty">
+            <service-call name="create#moqui.party.PartyEntity"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="updateParty">
+            <service-call name="update#moqui.party.PartyEntity"/>
+            <default-response type="none"/>
+        </transition>
+        <transition name="deleteParty">
+            <service-call name="PartyService.delete#Party"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="createPartyContactRole">
+            <service-call name="create#moqui.party.PartyRole"/>
+            <default-response url="."/>
+        </transition>
+
+        <transition name="createPerson">
+            <service-call name="create#moqui.party.Person"/>
+            <default-response type="none"/>
+        </transition>
+        <transition name="updatePerson">
+            <service-call name="update#moqui.party.Person"/>
+            <default-response type="none"/>
+        </transition>
+        <transition name="deletePerson">
+            <service-call name="delete#moqui.party.Person"/>
+            <default-response type="none"/>
+        </transition>
+        <transition name="createOrg">
+            <service-call name="create#moqui.party.Organization"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="UpdateOrg">
+            <service-call name="update#moqui.party.Organization"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="DeleteOrg">
+            <service-call name="delete#moqui.party.Organization"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="createCont">
+            <service-call name="ContactMech.delete#ContactMech"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="createTelecom">
+            <service-call name="create#moqui.contact.TelecomNumber"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="updatetelecom">
+        <service-call name="update#moqui.contact.TelecomNumber"/>
+        <default-response url="."/>
+    </transition>
+        <transition name="deleteTelecom">
+        <service-call name="delete#moqui.contact.TelecomNumber"/>
+        <default-response url="."/>
+    </transition>
+        <transition name="createPostal">
+            <service-call name="create#moqui.contact.PostalAddress"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="updatePostal">
+            <service-call name="update#moqui.contact.PostalAddress"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="deletePostal">
+            <service-call name="delete#moqui.contact.PostalAddress"/>
+            <default-response url="."/>
+        </transition>
+        <transition name="createPartyContactMech">
+            <service-call name="create#moqui.contact.PartyContactMech"/>
+            <default-response url="."/>
+        </transition>
+
+
+    <!--    <pre-actions>-->
+    <!--            <entity-find entity-name="moqui.party.PartyEntity" list="partyEntity">-->
+    <!--            </entity-find>-->
+    <!--    </pre-actions>-->
+        <widgets>
+            <container-box>
+                <box-header>
+                    <label text="Party operation"/>
+                </box-header>
+               <box-body-nopad>
+<!--               <container-row>-->
+<!--               <row-col>-->
+                        <container-dialog id="UpdateParty" button-text="Update Party">
+                            <form-single name="Updateparty" transition="updateParty">
+                                <auto-fields-entity entity-name="PartyEntity" field-type="edit"/>
+                                <field name="submitButton">
+                                    <default-field title="Update"><submit/></default-field>
+                                </field>
+                            </form-single>
+                        </container-dialog>
+               <container-dialog id="CreateParty" button-text="New Party">
+                   <form-single name="CreateParty" transition="createParty">
+                       <auto-fields-entity entity-name="PartyEntity" field-type="edit"/>
+                       <field name="submitButton">
+                           <default-field title="Create"><submit/></default-field>
+                       </field>
+                   </form-single>
+               </container-dialog>
+
+                   <container-dialog id="DeleteParty" button-text="DeleteParty">
+                       <form-single name="DeleteParty" transition="deleteParty">
+                           <auto-fields-entity entity-name="PartyEntity" field-type="edit"/>
+                           <field name="submitButton">
+                               <default-field title="Delete"><submit/></default-field>
+                           </field>
+                       </form-single>
+                   </container-dialog>
+                   <container-dialog id="CreatePartyContactRole" button-text="Create PartyRole">
+                       <form-single name="CreatePartyRole" transition="createPartyContactRole">
+                           <auto-fields-entity entity-name="PartyRole" field-type="edit"/>
+                           <field name="submitButton">
+                               <default-field title="Create"><submit/></default-field>
+                           </field>
+                       </form-single>
+                   </container-dialog>
+
+           </box-body-nopad>
+            </container-box>
+
+
+    <!--      Person-->
+            <container-box>
+                    <box-header>
+                        <label text="Person operation"  ></label>
+                    </box-header>
+                    <box-body-nopad>
+                    <container-dialog id="CreatePerson" button-text="Create person">
+                        <form-single name="CreatePerson" transition="createPerson">
+                            <auto-fields-entity entity-name="Person" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Create"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+
+                    <container-dialog id="UpdatePerson" button-text="Update person">
+                        <form-single name="UpdatePerson" transition="UpdateOrg">
+                            <auto-fields-entity entity-name="Person" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Update"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="deletePerson" button-text="Delete person">
+                        <form-single name="UpdatePerson" transition="deletePerson">
+<!--                            <auto-fields-entity entity-name="Person" field-type="edit" />-->
+                            <field name="partyId">
+                                <default-field title="partyid"><text-line/></default-field>
+                            </field>
+                            <field name="submitButton">
+                                <default-field title="Delete"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                </box-body-nopad>
+            </container-box>
+
+            <container-box>
+                <box-header>
+                    <label text="Organisation operation"  ></label>
+                </box-header>
+                <box-body-nopad>
+                    <container-dialog id="CreateOrganization" button-text="Create Organization">
+                        <form-single name="CreateOrganisation" transition="createOrg">
+                            <auto-fields-entity entity-name="Organization" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Create"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+
+
+                    <container-dialog id="UpdateOrganization" button-text="Update Organisation">
+                        <form-single name="UpdateOrganization" transition="updateOrg">
+                            <auto-fields-entity entity-name="Organization" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Update"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+
+                    <container-dialog id="deleteorganization" button-text="Delete Organization">
+                    <form-single name="DeleteOrganization" transition="DeleteOrg">
+                        <field name="partyId">
+                            <default-field title="partyid"><text-line/></default-field>
+                        </field>
+                        <field name="submitButton">
+                            <default-field title="Delete"><submit/></default-field>
+                        </field>
+                    </form-single>
+                </container-dialog>
+
+                </box-body-nopad>
+                <!--            </container-box>-->
+                <!--        </ container-row>-->
+            </container-box>
+<!--                Create Contact-->
+            <container-box>
+                <box-header>
+                    <label text="Contact Operation"  ></label>
+                </box-header>
+                <box-body-nopad>
+                    <container-dialog id="CreatecontactMech" button-text="Create Contact">
+                        <form-single name="CreateContactMech" transition="createCont">
+                            <auto-fields-entity entity-name="ContactMech" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Create"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="CreateTelecom" button-text="Create TelecomNumber">
+                        <form-single name="CreateTelecom" transition="createTelecom">
+                            <auto-fields-entity entity-name="TelecomNumber" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Create"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="DeleteTelecom" button-text="Delete TelecomNumber">
+                        <form-single name="DeleteTelecom" transition="deletetelecom">
+                            <auto-fields-entity entity-name="TelecomNumber" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Delete"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="UpdateTelecom" button-text="Update TelecomNumber">
+                        <form-single name="UpadateTelecom" transition="updatetelecom">
+                            <auto-fields-entity entity-name="TelecomNumber" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Update"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="CreatePostal" button-text="Create PostalAddress">
+                        <form-single name="CreatePostal" transition="createPostal">
+                            <auto-fields-entity entity-name="PostalAddress" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Create"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="DeletePostal" button-text="Delete PostalAddress">
+                        <form-single name="DeletePostal" transition="deletePostal">
+                            <auto-fields-entity entity-name="PostalAddress" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Delete"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="UpdatePostal" button-text="Update PostalAddress">
+                        <form-single name="UeletePostal" transition="updatePostal">
+                            <auto-fields-entity entity-name="PostalAddress" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Update"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="CreatePartyContactMech" button-text="CreatePartyContactMech">
+                        <form-single name="CreatePartyContactMech" transition="createPartyContactMech">
+                            <auto-fields-entity entity-name="PartyContactMech" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Create"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                    <container-dialog id="DeletePartyContactMech" button-text="DeleteartyContactMech">
+                        <form-single name="DeleteContactMech" transition="deletePartyContactMech">
+                            <auto-fields-entity entity-name="PartyContactMech" field-type="edit"/>
+                            <field name="submitButton">
+                                <default-field title="Delete"><submit/></default-field>
+                            </field>
+                        </form-single>
+                    </container-dialog>
+                </box-body-nopad>
+            </container-box>
+    </widgets>
+    </screen>
+
