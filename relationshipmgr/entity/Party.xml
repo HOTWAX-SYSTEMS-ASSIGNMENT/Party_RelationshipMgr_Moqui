@@ -3,7 +3,7 @@
           xmlns="file://C:/Users/MSI Laptop/Desktop/Sandbox1/moqui-framework/framework/xsd/entity-definition-3.xsd"
           xsi:noNamespaceSchemaLocation="http://moqui.org/xsd/moqui-conf-3.xsd">
 
-    <entity entity-name="PartyEntity" package="moqui.party" no-update-stamp="false">
+    <entity entity-name="Party" package="moqui.party" no-update-stamp="false">
         <field name="partyId" type="id" is-pk="true"/>
         <field name="partyTypeEnumId" type="id"/>
         <relationship type="one-nofk" related="moqui.party.Person"/>
